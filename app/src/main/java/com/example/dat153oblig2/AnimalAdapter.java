@@ -16,7 +16,7 @@ import java.util.List;
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalHolder> {
     private List<Animal> animals = new ArrayList<>();
-
+// Thor var her
 
     @NonNull
     @Override

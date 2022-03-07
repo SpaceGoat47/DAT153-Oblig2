@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.dat153oblig2.Room.Animal;
 import com.example.dat153oblig2.Room.AnimalDAO;
 import com.example.dat153oblig2.Room.AnimalDatabase;
 
@@ -31,9 +32,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private final int ANSWERS_TOTAL = 3;
 
     private int nextCount;
-    private List<PersonEntry> shuffledPeople;
+    private List<Animal> shuffledPeople;
     private List<String> options;
-    private PersonEntry currentPerson;
+    private Animal currentPerson;
     private int correctAnswer;
 
 
@@ -59,11 +60,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         tvStats = findViewById(R.id.tvStats);
         tvStatsPercent = findViewById(R.id.tvStatsPercent);
 
-        dao = AnimalDatabase.getINSTANCE(getApplicationContext()).personDao();
-        shuffledPeople = new ArrayList<>(dao.getAllPeople());
+        // dao = AnimalDatabase.getAllAnimals(getApplicationContext()).personDao();
+        dao = AnimalDAO.getAllAnimals(getApplicationContext()).personDao();
+        shuffledPeople = new ArrayList<>(dao.getAllAnimals());
         Collections.shuffle(shuffledPeople);
 
-        for (var btn : btnAnswers) {
+        // For (var
+        for (Button btn : btnAnswers) {
             btn.setOnClickListener(this);
         }
 
@@ -81,10 +84,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         options = new ArrayList<>(ANSWERS_TOTAL);
         for (int i = 0; i < ANSWERS_TOTAL; i++) {
-            options.add(i == correctAnswer ? currentPerson.getFullName() : randomName());
+            options.add(i == correctAnswer ? currentPerson.getName() : randomName());
         }
 
-        ivImage.setImageURI(currentPerson.getImageUri());
+        ivImage.setImageURI(currentPerson.getUriImage());
 
         for (int i = 0; i < ANSWERS_TOTAL; i++) {
             btnAnswers[i].setText(options.get(i));
@@ -94,8 +97,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private String randomName() {
         String randomName;
         do {
-            randomName = shuffledPeople.get(random.nextInt(shuffledPeople.size())).getFullName();
-        } while (randomName.equals(currentPerson.getFullName()) || options.contains(randomName));
+            randomName = shuffledPeople.get(random.nextInt(shuffledPeople.size())).getName();
+        } while (randomName.equals(currentPerson.getName()) || options.contains(randomName));
         return randomName;
     }
 
@@ -116,8 +119,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             public void onTick(long millisUntilFinished) { }
 
             public void onFinish() {
-                for (var btn : btnAnswers) {
-                    btn.setBackgroundColor(ContextCompat.getColor(view.getContext(), R.color.design_default_color_primary));
+                for (Button btn : btnAnswers) {
+                    btn.setBackgroundColor(ContextCompat.getColor(view.getContext(), com.google.android.material.R.color.design_default_color_background));
                 }
                 nextPerson();
             }

@@ -18,8 +18,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/placeholder"
-        android:contentDescription="@string/image_of_person" />
+        android:contentDescription="@string/image_of_person"
+        />
 
     <Button
         android:id="@+id/btnAnswer0"

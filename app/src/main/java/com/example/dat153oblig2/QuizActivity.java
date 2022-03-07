@@ -23,6 +23,7 @@ import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // Deler av denne oppgaven er løst med inspirasjon fra lignende prosketer på GitHUB
     private static final String TAG = "QuizActivity";
 
     private AnimalDAO dao;

@@ -10,12 +10,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static final String TAG = "MainActivity";
 
     private Button btnQuiz, btnDatabase;
     private Intent intent;
+    private FloatingActionButton fabBtn;
 
     @Override
     public void onClick(View view) {
@@ -29,6 +32,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnQuiz:
                 intent = new Intent(this, QuizActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.fabAdd:
+                intent = new Intent(this, AddEntryActivity.class);
                 startActivity(intent);
                 break;
             default:
@@ -45,10 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnDatabase = findViewById(R.id.btnDatabase);
         btnQuiz = findViewById(R.id.btnQuiz);
+        fabBtn = findViewById(R.id.fabAdd);
 
         btnDatabase.setOnClickListener(this);
         btnQuiz.setOnClickListener(this);
+        fabBtn.setOnClickListener(this);
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cat);
     }
 }

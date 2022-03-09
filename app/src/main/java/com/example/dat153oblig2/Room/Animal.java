@@ -13,16 +13,13 @@ public class Animal {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @NonNull
-    private String name; // private
+    private String name;
 
-    @NonNull
-    @TypeConverters
-    private Uri uriImage; // Private
+    private Uri uriImage;
 
     public Animal(String name, Uri uriImage) {
         this.name = name;
-       this.uriImage = uriImage; //this.uriImage
+        this.uriImage = uriImage;
     }
 
 

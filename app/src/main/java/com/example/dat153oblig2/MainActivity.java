@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+
+        Log.d(TAG, "onClick: " + view.getResources().getResourceEntryName(view.getId()));
+
         switch(view.getId()){
             case R.id.btnDatabase:
                 intent = new Intent(this, DatabaseActivity.class);
@@ -36,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d(TAG, "onCreate");
 
         btnDatabase = findViewById(R.id.btnDatabase);
         btnQuiz = findViewById(R.id.btnQuiz);

@@ -62,8 +62,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         tvStatsPercent = findViewById(R.id.tvStatsPercent);
 
         // dao = AnimalDatabase.getAllAnimals(getApplicationContext()).personDao();
-        dao = AnimalDAO.getAllAnimals(getApplicationContext()).personDao();
-        shuffledPeople = new ArrayList<>(dao.getAllAnimals());
+        //dao = AnimalDAO.getAllAnimals(getApplicationContext()).personDao();
+        //shuffledPeople = new ArrayList<>(dao.getAllAnimals());
         Collections.shuffle(shuffledPeople);
 
         // For (var

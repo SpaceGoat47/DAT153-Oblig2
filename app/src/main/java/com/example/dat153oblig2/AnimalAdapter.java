@@ -30,7 +30,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalHold
     public void onBindViewHolder(@NonNull AnimalHolder holder, int position) {
         Animal currentAnimal = animals.get(position);
         holder.txtName.setText(currentAnimal.getName());
-        //holder.imgImage.setImageURI(currentAnimal.getUriImage());
+        holder.imgImage.setImageURI(currentAnimal.getUriImage());
     }
 
     @Override
@@ -40,6 +40,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalHold
 
     public void setAnimals(List<Animal> animals){
         this.animals = animals;
+        notifyDataSetChanged();
     }
 
     //holds the views in our single recyclerview items

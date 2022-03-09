@@ -38,8 +38,9 @@ public class AnimalRepository {
         new DeleteAsyncTask(animalDAO).execute(animal);
     }
 
-    public void sortAsc(){
+    public LiveData<List<Animal>> sortAsc(){
         new SortAscAsyncTask(animalDAO).execute();
+        return allAnimals;
     }
 
     //automatically returns the livedata on a background thread
@@ -77,7 +78,7 @@ public class AnimalRepository {
         }
     }
 
-    private static class SortAscAsyncTask extends AsyncTask<Void, Void, Void>{
+    private static class SortAscAsyncTask extends AsyncTask<Void, Void, LiveData<List<Animal>>>{
         private AnimalDAO animalDAO;
 
         private SortAscAsyncTask(AnimalDAO animalDAO){
@@ -85,9 +86,8 @@ public class AnimalRepository {
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
-            animalDAO.sortAnimalsAsc();
-            return null;
+        protected LiveData<List<Animal>> doInBackground(Void... voids) {
+            return animalDAO.sortAnimalsAsc();
         }
     }
 

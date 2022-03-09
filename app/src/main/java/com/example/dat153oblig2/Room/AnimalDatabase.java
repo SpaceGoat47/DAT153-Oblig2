@@ -17,14 +17,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.dat153oblig2.Converters;
 import com.example.dat153oblig2.R;
 
-@Database(entities = {Animal.class}, version = 1)
-@TypeConverters(Converters.class)
+@Database(entities = {Animal.class}, version = 5, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class AnimalDatabase extends RoomDatabase {
 
     //abstract DAO method with no body
     public abstract AnimalDAO animalDAO();
 
-    private static AnimalDatabase instance = null;
+    private static AnimalDatabase instance;
 
     //thread-safe singleton method
     public static synchronized AnimalDatabase getInstance(Context context){
@@ -41,8 +41,8 @@ public abstract class AnimalDatabase extends RoomDatabase {
     private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            new InitializeAsyncTask(instance).execute();
             super.onCreate(db);
+            new InitializeAsyncTask(instance).execute();
         }
     };
 
@@ -55,19 +55,13 @@ public abstract class AnimalDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            animalDAO.insert(new Animal("Cat", getUri(R.drawable.cat)));
+            animalDAO.insert(new Animal("Dog", getUri(R.drawable.dog)));
+            animalDAO.insert(new Animal("Horse", getUri(R.drawable.horse)));
+            animalDAO.insert(new Animal("Koala", getUri(R.drawable.koala)));
+            animalDAO.insert(new Animal("Monkey", getUri(R.drawable.monkey)));
+            animalDAO.insert(new Animal("Polar bear", getUri(R.drawable.polarbear)));
 
-            Animal[] animal = new Animal[]
-                    {
-                            new Animal("Cat", getUri(R.drawable.cat)),
-                            new Animal("Dog", getUri(R.drawable.dog)),
-                            new Animal("Horse", getUri(R.drawable.horse)),
-                            new Animal("Koala", getUri(R.drawable.koala)),
-                            new Animal("Monkey", getUri(R.drawable.monkey)),
-                            new Animal("Polar bear", getUri(R.drawable.polarbear)),
-                    // animalDAO.insert(new Animal("Horse", getUri(R.drawable.horse)));
-                    // return null;
-                    };
-            animalDAO.insert(animal);
             return null;
         }
     }

@@ -17,7 +17,7 @@ public class AnimalViewModel extends AndroidViewModel {
     public AnimalViewModel(@NonNull Application application) {
         super(application);
         repository = new AnimalRepository(application);
-        this.allAnimals = repository.getAllAnimals();
+        allAnimals = repository.getAllAnimals();
     }
 
     //Our activities can only access our ViewModel, so we need wrapper methods from AnimalRepository.class
@@ -29,8 +29,8 @@ public class AnimalViewModel extends AndroidViewModel {
         repository.delete(animal);
     }
 
-    public void sortAsc(){
-        repository.sortAsc();
+    public LiveData<List<Animal>> sortAsc(){
+        return repository.sortAsc();
     }
 
     public LiveData<List<Animal>> getAllAnimals(){

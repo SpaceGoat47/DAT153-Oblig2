@@ -12,7 +12,7 @@ import java.util.List;
 public interface AnimalDAO {
 
     @Insert
-    void insert(Animal[] animal);
+    void insert(Animal animal);
 
     @Delete
     void delete(Animal animal);
@@ -22,7 +22,7 @@ public interface AnimalDAO {
 
     //Sort method??
     @Query("SELECT * FROM animals ORDER BY name ASC")
-    void sortAnimalsAsc();
+    LiveData<List<Animal>> sortAnimalsAsc();
 
     //TODO: descending too??
 }

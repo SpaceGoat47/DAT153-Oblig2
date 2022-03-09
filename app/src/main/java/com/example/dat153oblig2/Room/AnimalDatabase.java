@@ -55,13 +55,19 @@ public abstract class AnimalDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            animalDAO.insert(new Animal("Cat", getUri(R.drawable.cat)));
-            animalDAO.insert(new Animal("Dog", getUri(R.drawable.dog)));
-            animalDAO.insert(new Animal("Horse", getUri(R.drawable.horse)));
-            animalDAO.insert(new Animal("Koala", getUri(R.drawable.koala)));
-            animalDAO.insert(new Animal("Monkey", getUri(R.drawable.monkey)));
-            animalDAO.insert(new Animal("Polar bear", getUri(R.drawable.polarbear)));
 
+            Animal[] animal = new Animal[]
+                    {
+                            new Animal("Cat", getUri(R.drawable.cat)),
+                            new Animal("Dog", getUri(R.drawable.dog)),
+                            new Animal("Horse", getUri(R.drawable.horse)),
+                            new Animal("Koala", getUri(R.drawable.koala)),
+                            new Animal("Monkey", getUri(R.drawable.monkey)),
+                            new Animal("Polar bear", getUri(R.drawable.polarbear)),
+                    // animalDAO.insert(new Animal("Horse", getUri(R.drawable.horse)));
+                    // return null;
+                    };
+            animalDAO.insert(animal);
             return null;
         }
     }

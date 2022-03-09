@@ -14,15 +14,15 @@ public class Animal {
     private int id;
 
     @NonNull
-    private String name;
+    private String name; // private
 
     @NonNull
     @TypeConverters
-    private Uri uriImage;
+    private Uri uriImage; // Private
 
     public Animal(String name, Uri uriImage) {
         this.name = name;
-        this.uriImage = uriImage;
+       this.uriImage = uriImage; //this.uriImage
     }
 
 

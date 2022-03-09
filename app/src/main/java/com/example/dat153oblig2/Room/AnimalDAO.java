@@ -6,15 +6,13 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.dat153oblig2.Room.Animal;
-
 import java.util.List;
 
 @Dao
 public interface AnimalDAO {
 
     @Insert
-    void insert(Animal animal);
+    void insert(Animal[] animal);
 
     @Delete
     void delete(Animal animal);

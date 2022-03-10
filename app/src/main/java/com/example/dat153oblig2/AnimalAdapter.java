@@ -43,6 +43,10 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalHold
         notifyDataSetChanged();
     }
 
+    public Animal getAnimalAt(int position){
+        return animals.get(position);
+    }
+
     //holds the views in our single recyclerview items
     public class AnimalHolder extends RecyclerView.ViewHolder{
         private TextView txtName;

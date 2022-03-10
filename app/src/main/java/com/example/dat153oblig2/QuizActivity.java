@@ -2,6 +2,7 @@ package com.example.dat153oblig2;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -27,6 +28,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "QuizActivity";
 
     private AnimalDAO dao;
+    private AnimalViewModel animalViewModel;
 
     private final Random random = new Random();
 
@@ -54,6 +56,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        animalViewModel = new ViewModelProvider(this,
+                (ViewModelProvider.Factory) new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(AnimalViewModel.class);
+
         ivImage = findViewById(R.id.ivImage);
         btnAnswers[0] = findViewById(R.id.btnAnswer0);
         btnAnswers[1] = findViewById(R.id.btnAnswer1);
@@ -61,9 +66,12 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         tvStats = findViewById(R.id.tvStats);
         tvStatsPercent = findViewById(R.id.tvStatsPercent);
 
+        //har kommentert bort litt greier her
         // dao = AnimalDatabase.getAllAnimals(getApplicationContext()).personDao();
         //dao = AnimalDAO.getAllAnimals(getApplicationContext()).personDao();
         //shuffledPeople = new ArrayList<>(dao.getAllAnimals());
+        animalViewModel.getAllAnimals(); // returnerer liste av alle Animals i databasen
+
         Collections.shuffle(shuffledPeople);
 
         // For (var

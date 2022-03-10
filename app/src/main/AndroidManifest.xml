@@ -12,15 +12,18 @@
         <activity
             android:name=".AddEntryActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:label="Add Entry"/>
         <activity
             android:name=".DatabaseActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:label="Database"/>
         <activity
             android:name=".QuizActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:label="Quiz"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

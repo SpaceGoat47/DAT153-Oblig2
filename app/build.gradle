@@ -31,6 +31,8 @@ dependencies {
 
     def lifecycle_version = "2.5.0-alpha03"
     def room_version = "2.4.2"
+    def espresso_version = "3.4.0"
+    def androidXTestVersion = "1.4.0"
 
     //lifecycle components
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
@@ -40,10 +42,18 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
+    //standard
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
+
+    //Espresso dependencies added
+    androidTestImplementation "androidx.test:runner:$androidXTestVersion"
+    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+    androidTestImplementation "androidx.test:core:$androidXTestVersion"
 }

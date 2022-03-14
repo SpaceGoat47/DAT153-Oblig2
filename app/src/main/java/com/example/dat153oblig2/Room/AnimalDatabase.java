@@ -65,9 +65,4 @@ public abstract class AnimalDatabase extends RoomDatabase {
             return null;
         }
     }
-
-    public Bitmap getBitmap(int imageID){
-        Bitmap bitmap = getBitmap(R.drawable.cat);
-        return bitmap;
-    }
 }

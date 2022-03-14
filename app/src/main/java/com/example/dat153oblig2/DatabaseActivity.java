@@ -91,9 +91,18 @@ public class DatabaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+/*        AnimalAdapter adapter = new AnimalAdapter();
+        recyclerView.setAdapter(adapter);*/
         switch(item.getItemId()){
             case R.id.sortAscending:
                 animalViewModel.sortAsc();
+/*                animalViewModel.sortAsc().observe(this, new Observer<List<Animal>>() {
+                    @Override
+                    public void onChanged(List<Animal> animals) {
+                        Log.d(TAG, "onChanged");
+                        adapter.setAnimals(animals);
+                    }
+                });*/
                 Toast.makeText(this, "Database sorted ascendingly", Toast.LENGTH_SHORT).show();
                 return true;
             default:

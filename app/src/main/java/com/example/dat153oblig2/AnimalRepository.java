@@ -39,7 +39,7 @@ public class AnimalRepository {
     }
 
     public LiveData<List<Animal>> sortAsc(){
-        new SortAscAsyncTask(animalDAO).execute();
+        //new SortAscAsyncTask(animalDAO).execute();
         return allAnimals;
     }
 

@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dat153oblig2.Room.Animal;
-import com.example.dat153oblig2.Room.AnimalDAO;
-import com.example.dat153oblig2.Room.AnimalDatabase;
+// import com.example.dat153oblig2.Room.AnimalDAO;
+// import com.example.dat153oblig2.Room.AnimalDatabase;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,17 +27,14 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     // Deler av denne oppgaven er løst med inspirasjon fra lignende prosketer på GitHUB
     private static final String TAG = "QuizActivity";
 
-    private AnimalDAO dao;
-    private AnimalViewModel animalViewModel;
-
     private final Random random = new Random();
 
     private final int ANSWERS_TOTAL = 3;
 
     private int nextCount;
-    private List<Animal> shuffledPeople;
+    private List<Animal> shuffledAnimal;
     private List<String> options;
-    private Animal currentPerson;
+    private Animal currentAnimal;
     private int correctAnswer;
 
 
@@ -56,7 +53,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        animalViewModel = new ViewModelProvider(this,
+        AnimalViewModel animalViewModel = new ViewModelProvider(this,
                 (ViewModelProvider.Factory) new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(AnimalViewModel.class);
 
         ivImage = findViewById(R.id.ivImage);
@@ -70,22 +67,22 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         // dao = AnimalDatabase.getAllAnimals(getApplicationContext()).personDao();
         //dao = AnimalDAO.getAllAnimals(getApplicationContext()).personDao();
         //shuffledPeople = new ArrayList<>(dao.getAllAnimals());
-        animalViewModel.getAllAnimals(); // returnerer liste av alle Animals i databasen
+      //  animalViewModel.getAllAnimals(); // returnerer liste av alle Animals i databasen
 
-        Collections.shuffle(shuffledPeople);
 
-        // For (var
+        Collections.shuffle(shuffledAnimal);
+
         for (Button btn : btnAnswers) {
             btn.setOnClickListener(this);
         }
 
-        nextPerson();
+        nextAnimal();
     }
 
-    private void nextPerson() {
-        currentPerson = shuffledPeople.get(nextCount++);
-        if (nextCount == shuffledPeople.size()) {
-            Collections.shuffle(shuffledPeople);
+    private void nextAnimal() {
+        currentAnimal = shuffledAnimal.get(nextCount++);
+        if (nextCount == shuffledAnimal.size()) {
+            Collections.shuffle(shuffledAnimal);
             nextCount = 0;
         }
 
@@ -93,10 +90,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         options = new ArrayList<>(ANSWERS_TOTAL);
         for (int i = 0; i < ANSWERS_TOTAL; i++) {
-            options.add(i == correctAnswer ? currentPerson.getName() : randomName());
+            options.add(i == correctAnswer ? currentAnimal.getName() : randomName());
         }
 
-        ivImage.setImageURI(currentPerson.getUriImage());
+        ivImage.setImageURI(currentAnimal.getUriImage());
 
         for (int i = 0; i < ANSWERS_TOTAL; i++) {
             btnAnswers[i].setText(options.get(i));
@@ -106,8 +103,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private String randomName() {
         String randomName;
         do {
-            randomName = shuffledPeople.get(random.nextInt(shuffledPeople.size())).getName();
-        } while (randomName.equals(currentPerson.getName()) || options.contains(randomName));
+            randomName = shuffledAnimal.get(random.nextInt(shuffledAnimal.size())).getName();
+        } while (randomName.equals(currentAnimal.getName()) || options.contains(randomName));
         return randomName;
     }
 
@@ -131,7 +128,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 for (Button btn : btnAnswers) {
                     btn.setBackgroundColor(ContextCompat.getColor(view.getContext(), com.google.android.material.R.color.design_default_color_background));
                 }
-                nextPerson();
+                nextAnimal();
             }
         }.start();
     }
@@ -140,5 +137,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy: called");
+    }
+
+    public void setShuffledAnimal(List<Animal> shuffledAnimal) {
+        this.shuffledAnimal = shuffledAnimal;
     }
 }

@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dat153oblig2.Room.Animal;
-import com.example.dat153oblig2.Room.AnimalDAO;
+// import com.example.dat153oblig2.Room.AnimalDAO;
 // import com.example.dat153oblig2.Room.AnimalDatabase;
 
 import java.util.ArrayList;
@@ -26,9 +26,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     // Deler av denne oppgaven er løst med inspirasjon fra lignende prosketer på GitHUB
     private static final String TAG = "QuizActivity";
-
- //   private AnimalDAO dao;
-    private AnimalViewModel animalViewModel;
 
     private final Random random = new Random();
 
@@ -56,7 +53,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        animalViewModel = new ViewModelProvider(this,
+        AnimalViewModel animalViewModel = new ViewModelProvider(this,
                 (ViewModelProvider.Factory) new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(AnimalViewModel.class);
 
         ivImage = findViewById(R.id.ivImage);
@@ -75,7 +72,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         Collections.shuffle(shuffledAnimal);
 
-        // For (var
         for (Button btn : btnAnswers) {
             btn.setOnClickListener(this);
         }
@@ -141,5 +137,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy: called");
+    }
+
+    public void setShuffledAnimal(List<Animal> shuffledAnimal) {
+        this.shuffledAnimal = shuffledAnimal;
     }
 }

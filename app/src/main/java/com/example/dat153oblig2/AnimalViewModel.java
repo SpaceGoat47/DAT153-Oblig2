@@ -13,11 +13,13 @@ import java.util.List;
 public class AnimalViewModel extends AndroidViewModel {
     private AnimalRepository repository;
     private LiveData<List<Animal>> allAnimals;
+    private List<Animal> allAnimalsList;
 
     public AnimalViewModel(@NonNull Application application) {
         super(application);
         repository = new AnimalRepository(application);
         allAnimals = repository.getAllAnimals();
+        //allAnimalsList = repository.getAllAnimalsList();
     }
 
     //Our activities can only access our ViewModel, so we need wrapper methods from AnimalRepository.class
@@ -36,4 +38,8 @@ public class AnimalViewModel extends AndroidViewModel {
     public LiveData<List<Animal>> getAllAnimals(){
         return allAnimals;
     }
+
+/*    public List<Animal> getAllAnimalsList(){
+        return allAnimalsList;
+    }*/
 }

@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,7 +29,7 @@ public class AddEntryActivity extends AppCompatActivity {
     private static final String TAG = "AddEntryActivity";
 
     private Button btnChooseImage;
-    private ImageView imgImage;
+    private ImageView imgImageAdd;
     private EditText edtName;
     private ActivityResultLauncher<Intent> chooseImageResult;
     private Uri uriImage;
@@ -42,7 +43,7 @@ public class AddEntryActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate");
 
         btnChooseImage = findViewById(R.id.btnChooseImage);
-        imgImage = findViewById(R.id.imgImage);
+        imgImageAdd = findViewById(R.id.imgImageAdd);
         edtName = findViewById(R.id.edtName);
 
         animalViewModel = new ViewModelProvider(this,
@@ -54,7 +55,7 @@ public class AddEntryActivity extends AppCompatActivity {
             getContentResolver().takePersistableUriPermission(uriImage, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             Log.d(TAG, "onActivityResult: uri: " + uriImage);
             Log.d(TAG, "onActivityResult: result: " + result);
-            imgImage.setImageURI(uriImage);
+            imgImageAdd.setImageURI(uriImage);
         });
 
         btnChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -82,10 +83,11 @@ public class AddEntryActivity extends AppCompatActivity {
     }
 
     private void selectImage(){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        //intent.setType("image/*");
+        //intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+        //intent.addCategory(Intent.CATEGORY_OPENABLE);
+
         chooseImageResult.launch(intent);
     }
 

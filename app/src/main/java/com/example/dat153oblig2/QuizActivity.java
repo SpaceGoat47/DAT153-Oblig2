@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dat153oblig2.Room.Animal;
+import com.example.dat153oblig2.Room.AnimalDAO;
+import com.example.dat153oblig2.Room.AnimalDatabase;
 // import com.example.dat153oblig2.Room.AnimalDAO;
 // import com.example.dat153oblig2.Room.AnimalDatabase;
 
@@ -37,6 +40,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private Animal currentAnimal;
     private int correctAnswer;
 
+    private AnimalDAO animalDAO;
 
     // Views
     private ImageView ivImage;
@@ -66,11 +70,14 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         //har kommentert bort litt greier her
         // dao = AnimalDatabase.getAllAnimals(getApplicationContext()).personDao();
         //dao = AnimalDAO.getAllAnimals(getApplicationContext()).personDao();
-        //shuffledPeople = new ArrayList<>(dao.getAllAnimals());
-      //  animalViewModel.getAllAnimals(); // returnerer liste av alle Animals i databasen
+        shuffledAnimal = new ArrayList<>();
+        shuffledAnimal = (List<Animal>) animalViewModel.getAllAnimals();
+        //animalViewModel.getAllAnimals(); // returnerer liste av alle Animals i databasen
+        //shuffledAnimal.size();
 
 
-        Collections.shuffle(shuffledAnimal);
+
+        //Collections.shuffle(shuffledAnimal);
 
         for (Button btn : btnAnswers) {
             btn.setOnClickListener(this);

@@ -7,7 +7,7 @@
     tools:context=".AddEntryActivity">
 
     <ImageView
-        android:id="@+id/imgImage"
+        android:id="@+id/imgImageAdd"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_marginTop="120dp"
@@ -34,9 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Choose Image"
-        app:layout_constraintEnd_toEndOf="@+id/imgImage"
+        app:layout_constraintEnd_toEndOf="@+id/imgImageAdd"
         app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="@+id/imgImage"
-        app:layout_constraintTop_toBottomOf="@+id/imgImage" />
+        app:layout_constraintStart_toStartOf="@+id/imgImageAdd"
+        app:layout_constraintTop_toBottomOf="@+id/imgImageAdd" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

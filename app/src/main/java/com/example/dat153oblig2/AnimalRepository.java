@@ -17,6 +17,7 @@ public class AnimalRepository {
     private AnimalDAO animalDAO;
     //Container to get all the animals from the database
     private LiveData<List<Animal>> allAnimals;
+    private List<Animal> allAnimalsList;
 
     //constructor with Application parameter
     //Application is a subclass of context
@@ -25,6 +26,7 @@ public class AnimalRepository {
         AnimalDatabase database = AnimalDatabase.getInstance(application);
         animalDAO = database.animalDAO(); //calls abstract method in AnimalDatabase -- since using Room.databaseBuilder(), Room take cares of the code in the method body
         allAnimals = animalDAO.getAllAnimals(); //returns all the animals in the 'animals'-database (through AnimalDAO) -- Room autogenerates the code
+        //allAnimalsList = animalDAO.getAllAnimalsList();
     }
 
     //create methods for all our database operations
@@ -39,9 +41,14 @@ public class AnimalRepository {
     }
 
     public LiveData<List<Animal>> sortAsc(){
+        //TODO get sort to work
         //new SortAscAsyncTask(animalDAO).execute();
         return allAnimals;
     }
+
+/*    public List<Animal> getAllAnimalsList(){
+        return allAnimalsList;
+    }*/
 
     //automatically returns the livedata on a background thread
     public LiveData<List<Animal>> getAllAnimals() {

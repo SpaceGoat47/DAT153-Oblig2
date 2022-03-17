@@ -20,6 +20,9 @@ public interface AnimalDAO {
     @Query("SELECT * FROM animals")
     LiveData<List<Animal>> getAllAnimals();
 
+/*    @Query("SELECT * FROM animals")
+    List<Animal> getAllAnimalsList();*/
+
     //Sort method??
     @Query("SELECT * FROM animals ORDER BY name ASC")
     LiveData<List<Animal>> sortAnimalsAsc();
